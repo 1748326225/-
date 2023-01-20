@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh" onmousemove="music()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品购买</title>
+  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js"></script>
+  <script src="js/all.js"></script>
+</head>
+<body>
+	<!-- 图片懒加载 -->
+	<script>
+		  const imgs = document.getElementsByTagName('img');
+		  function lazyLoad(imgs) {
+		    // 视口的高度；
+		    const clientH = document.documentElement.clientHeight;
+		    // 滚动的距离，这里的逻辑判断是为了做兼容性处理；
+		    const clientT = document.documentElement.scrollTop || document.body.scrollTop;
+		    for(let i = 0; i < imgs.length; i++) {
+		      // 逻辑判断，如果视口高度+滚动距离 > 图片到浏览器顶部的距离就去加载；
+		      // !imgs[i].src 是避免重复请求，可以把该条件取消试试：可以看到不加该条件的话往回滚动就会重复请求；
+		      if(clientH + clientT > imgs[i].offsetTop && !imgs[i].src) {
+		        // 使用data-xx的自定义属性可以通过dom元素的dataset.xx取得；
+		        imgs[i].src = imgs[i].dataset.src;
+		      }
+		    }
+		  };
+		  // 一开始能够加载显示在视口中的图片；
+		  lazyLoad(imgs);
+		  // 监听滚动事件，加载后面的图片；
+		  window.onscroll = () => lazyLoad(imgs);
+		  
+		      // 设置节流函数
+		      function throttle(fn, delay) {
+		        let timer = null;
+		        return () => {
+		          if(timer) {
+		            return;
+		          };
+		          timer = setTimeout(() => {
+		            fn(imgs);
+		            timer = null;
+		          }, delay)
+		        }
+		      }
+		      // 监听滚动事件，加载后面的图片；
+		      window.onscroll = throttle(lazyLoad, 500);  
+	</script>
+	<audio src="http://music.163.com/song/media/outer/url?id=35345243.mp3" autoplay loop preload="auto" class="music"></audio>
+	<header id="header">
+		<details id="sz-kj">
+			<summary id="sezhi">〓</summary>
+			<ul>
+				<script>
+					function gg(){
+						window.location.href="files/gg.html";
+					}
+				</script>
+				<li onclick="gg()">本站公告<div id="d"></div></li>
+				<li>密钥兑换</li>
+			</ul>
+		</details>
+	</header>
+	<h4 id="new">新春特辑</h4>
+	
+	<div id="kj">
+		<script>
+			window.addEventListener("load",function(){
+				document.getElementById("xt-li1").style.backgroundColor="#fff";
+			})
+			var i=0;
+			function time(){
+				i=i+1;
+				if(i==3){
+					i=0;
+				}
+				if(i==0){
+					document.getElementById("xt-li1").style.backgroundColor="#fff";
+				}else{
+					document.getElementById("xt-li1").style.backgroundColor="#c9c2ff";
+				}
+				if(i==2){
+					document.getElementById("xt-li3").style.backgroundColor="#fff";
+				}else{
+					document.getElementById("xt-li3").style.backgroundColor="#c9c2ff";
+				}
+				if(i==1){
+					document.getElementById("xt-li12").style.backgroundColor="#fff";
+				}else{
+					document.getElementById("xt-li12").style.backgroundColor="#c9c2ff";
+				}
+			}
+			function move(){
+				var move=document.getElementById("lunbo-kj");
+				move.style.marginLeft=-i*400+"px";
+			}
+			setInterval("time()",6000)
+			setInterval("move()")
+		</script>
+		<div id="lunbo">
+			<div id="lunbo-kj">
+				<img src="./img/xb1.jpg" alt="新春特辑">
+				<img src="./img/xb2.jpg" alt="新春特辑">
+				<img src="./img/xb3.jpg" alt="新春特辑">
+			</div>
+		</div>
+		<ul id="xt">
+			<li id="xt-li1">
+				<img data-src="./img/xb1.jpg">
+				<p id="ts">特殊商品<br>暂不售卖</p>
+			</li>
+			<li id="xt-li12">
+				 <img data-src="./img/xb2.jpg">
+				 <p class="p1"><span>单约：</span><span>10</span><span>元</span></p>
+				 <p class="p2"><span>团价：</span><span>7</span><span>元</span></p>
+				 <p class="p3"><span>买断：</span><span>40送模板笔刷</span></p>
+			</li>
+			<li id="xt-li3">
+				<img data-src="./img/xb3.jpg">
+				<p class="p1"><span>单约：</span><span>13</span><span>元</span></p>
+				<p class="p2"><span>团价：</span><span>6</span><span>元</span></p>
+				<p class="p3"><span>买断：</span><span>50送模板笔刷</span></p>
+			</li>
+		</ul>
+	</div>
+	
+	<h4>本站公告</h4>
+	<div id="gg-marquee">
+		<marquee behavior="scroll" direction="left">
+				<p>小曦不嘻的购买须知:
+				1.购买须知商品购买后如有疑问请出示购买凭据，为避免同行捣乱，该凭据购买后请使用密钥于官网兑换
+				2.未买断的商品不得进行二次售卖，如发现未经允许私自售卖者当侵权处理
+				3.不得有未经允许的抄袭，擦边，反动等违反当地法律法规的的行为
+				4.需要修改已购卡片，请出示购买凭证
+				5.商品一经卖出将不支持退款，如有疑问请咨询客服处理
+				6.买断商品不得二次收买
+				7.如发现以上所述违规行为，小曦不嘻将对此追查到底，并对违规操作者视情况而定给予触发，情节严重者将面临法律赔偿
+				8.以上所有条例以及商品最终解释权归小曦不嘻所有
+		</p>
+			</marquee>
+	</div>
+	
+	<h4>热门上新</h4>
+	<div class="main1">
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb19.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>6</span><span>元</span></p>
+				<p><span>团价：</span><span>4</span><span>元</span></p>
+				<p><span>买断：</span><span>75</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+	</div>
+	<h4>横图模板</h4>
+	<script>
+		function shop(){
+			window.location.href="https://qm.qq.com/cgi-bin/qm/qr?k=G5Y1sQLuaOaVRfIDTN_tm3TMOdZZYJAv&noverify=0&personal_qrcode_source=3";
+		}
+		function shop2(){
+			window.location.href="./files/wechat.html";
+		}
+	</script>
+	<div class="main1">
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb4.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>7</span><span>元</span></p>
+				<p><span>团价：</span><span>5</span><span>元</span></p>
+				<p><span>买断：</span><span>30</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb5.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>16</span><span>元</span></p>
+				<p><span>团价：</span><span>暂无</span><span></span></p>
+				<p><span>买断：</span><span>45</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb6.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>7</span><span>元</span></p>
+				<p><span>团价：</span><span>5</span><span>元</span></p>
+				<p><span>买断：</span><span>30</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb7.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>7</span><span>元</span></p>
+				<p><span>团价：</span><span>5</span><span>元</span></p>
+				<p><span>买断：</span><span>30</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb8.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>自介：</span><span>18</span><span>元</span></p>
+				<p><span>音介：</span><span>20</span><span>元</span></p>
+				<p><span>买断：</span><span>暂无</span><span></span></p>
+				<p><span>活动：</span><span>暂无</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb9.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>自介：</span><span>10</span><span>元</span></p>
+				<p><span>音介：</span><span>12</span><span>元</span></p>
+				<p><span>买断：</span><span>暂无</span><span></span></p>
+				<p><span>活动：</span><span>暂无</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb10.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>7</span><span>元</span></p>
+				<p><span>团价：</span><span>5</span><span>元</span></p>
+				<p><span>买断：</span><span>30</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb11.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>7</span><span>元</span></p>
+				<p><span>团价：</span><span>5</span><span>元</span></p>
+				<p><span>买断：</span><span>30</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb12.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>12</span><span>元</span></p>
+				<p><span>团价：</span><span>6</span><span>元</span></p>
+				<p><span>买断：</span><span>45</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<div class="muban">
+			<figure>
+				<img data-src="./img/xb13.jpg">
+			</figure>
+			<section>
+				<h5>商品详情</h5>
+				<p><span>单约：</span><span>6</span><span>元</span></p>
+				<p><span>团价：</span><span>3</span><span>元</span></p>
+				<p><span>买断：</span><span>25</span><span>元</span></p>
+				<p><span>活动：</span><span>买断送模板笔刷</span></p>
+				<button type="button" class="button1" onclick="shop()">QQ购买</button>
+				<button type="button" class="button2" onclick="shop2()">微信购买</button>
+			</section>
+		</div>
+		<details>
+			<summary class="bt">更多横板商品</summary>
+			<div class="muban">
+				<figure>
+					<img data-src="./img/xb14.jpg">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>单约：</span><span>6</span><span>元</span></p>
+					<p><span>团价：</span><span>3</span><span>元</span></p>
+					<p><span>买断：</span><span>25</span><span>元</span></p>
+					<p><span>活动：</span><span>买断送模板笔刷</span></p>
+					<button type="button" class="button1" onclick="shop()">QQ购买</button>
+					<button type="button" class="button2" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+			<div class="muban">
+				<figure>
+					<img data-src="./img/xb15.jpg">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>单约：</span><span>6</span><span>元</span></p>
+					<p><span>团价：</span><span>3</span><span>元</span></p>
+					<p><span>买断：</span><span>25</span><span>元</span></p>
+					<p><span>活动：</span><span>买断送模板笔刷</span></p>
+					<button type="button" class="button1" onclick="shop()">QQ购买</button>
+					<button type="button" class="button2" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+			<div class="muban">
+				<figure>
+					<img data-src="./img/xb16.jpg">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>单约：</span><span>6</span><span>元</span></p>
+					<p><span>团价：</span><span>3</span><span>元</span></p>
+					<p><span>买断：</span><span>25</span><span>元</span></p>
+					<p><span>活动：</span><span>买断送模板笔刷</span></p>
+					<button type="button" class="button1" onclick="shop()">QQ购买</button>
+					<button type="button" class="button2" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+			<div class="muban">
+				<figure>
+					<img data-src="./img/xb17.jpg">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>单约：</span><span>6</span><span>元</span></p>
+					<p><span>团价：</span><span>3</span><span>元</span></p>
+					<p><span>买断：</span><span>25</span><span>元</span></p>
+					<p><span>活动：</span><span>买断送模板笔刷</span></p>
+					<button type="button" class="button1" onclick="shop()">QQ购买</button>
+					<button type="button" class="button2" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+			<div class="muban">
+				<figure>
+					<img data-src="./img/xb18.jpg">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>单约：</span><span>16</span><span>元</span></p>
+					<p><span>团价：</span><span>10</span><span>元</span></p>
+					<p><span>买断：</span><span>100</span><span>元</span></p>
+					<p><span>活动：</span><span>买断送模板笔刷</span></p>
+					<button type="button" class="button1" onclick="shop()">QQ购买</button>
+					<button type="button" class="button2" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+		</details>
+		
+		
+		
+		
+		<h4>竖版模板</h4>
+		<div class="sbmb-wb">
+			<div class="sbmb">
+				<figure>
+					<img data-src="./img/xb1-1.jpg" alt="">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>自介：</span><span>20</span><span>元</span></p>
+					<p><span>音介：</span><span>22</span><span>元</span></p>
+					<p><span>买断：</span><span>30</span><span>元</span></p>
+					<p><span>活动：</span><span>50送模板</span></p>
+					<button type="button" class="button3" onclick="shop()">QQ购买</button>
+					<button type="button" class="button4" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+			<div class="sbmb sbmb2">
+				<figure>
+					<img data-src="./img/xb2-2.jpg" alt="">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>单约：</span><span>7</span><span>元</span></p>
+					<p><span>团价：</span><span>4</span><span>元</span></p>
+					<p><span>买断：</span><span>65</span><span>元</span></p>
+					<p><span>活动：</span><span>买断送模板笔刷</span></p>
+					<button type="button" class="button3" onclick="shop()">QQ购买</button>
+					<button type="button" class="button4" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+		</div>
+		<div class="sbmb-wb">
+			<div class="sbmb">
+				<figure>
+					<img data-src="./img/xb3-3.jpg" alt="">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>自介：</span><span>22</span><span>元</span></p>
+					<p><span>音价：</span><span>24</span><span>元</span></p>
+					<p><span>买断：</span><span>暂无</span><span></span></p>
+					<p><span>活动：</span><span>暂无</span></p>
+					<button type="button" class="button3" onclick="shop()">QQ购买</button>
+					<button type="button" class="button4" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+			<div class="sbmb sbmb2">
+				<figure>
+					<img data-src="./img/xb4-4.jpg" alt="">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>自介：</span><span>20</span><span>元</span></p>
+					<p><span>音价：</span><span>22</span><span>元</span></p>
+					<p><span>买断：</span><span>暂无</span><span></span></p>
+					<p><span>活动：</span><span>暂无</span></p>
+					<button type="button" class="button3" onclick="shop()">QQ购买</button>
+					<button type="button" class="button4" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+		</div>
+		<div class="sbmb-wb">
+			<div class="sbmb">
+				<figure>
+					<img data-src="./img/xb5-5.jpg" alt="">
+				</figure>
+				<section>
+					<h5>商品详情</h5>
+					<p><span>自介：</span><span>25</span><span>元</span></p>
+					<p><span>音价：</span><span>27</span><span>元</span></p>
+					<p><span>买断：</span><span>暂无</span><span></span></p>
+					<p><span>活动：</span><span>暂无</span></p>
+					<button type="button" class="button3" onclick="shop()">QQ购买</button>
+					<button type="button" class="button4" onclick="shop2()">微信购买</button>
+				</section>
+			</div>
+			
+			
+			
+		</div>
+	</div>
+	<script>
+		setInterval(function(){
+			var sj= new Date();
+			var year=document.getElementById("year");
+			year.innerHTML=sj.getFullYear()
+		})
+		
+		function show_date_time() {
+		    window.setTimeout("show_date_time()");
+		    BirthDay = new Date("01/01/2023 00:00:00");
+		    today = new Date();
+		    timeold = (today.getTime() - BirthDay.getTime());
+		    sectimeold = timeold / 1000
+		    secondsold = Math.floor(sectimeold);
+		    msPerDay = 24 * 60 * 60 * 1000
+		    e_daysold = timeold / msPerDay
+		    daysold = Math.floor(e_daysold);
+		    e_hrsold = (e_daysold - daysold) * 24;
+		    hrsold = Math.floor(e_hrsold);
+		    e_minsold = (e_hrsold - hrsold) * 60;
+		    minsold = Math.floor((e_hrsold - hrsold) * 60);
+		    seconds = Math.floor((e_minsold - minsold) * 60);
+			var t=document.getElementById("t");
+			var s=document.getElementById('s');
+			var f=document.getElementById("f");
+			var m=document.getElementById("m");
+			t.innerHTML=daysold;
+			s.innerHTML=hrsold;
+			f.innerHTML=minsold;
+			m.innerHTML=seconds;
+		    // span_dt_dt.innerHTML = daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒";
+		}
+		
+		show_date_time();
+	</script>
+	<footer id="footer">
+			<p><span>copyrignt</span><span>小曦不嘻</span><span>&copy;</span><span class="time">2022</span><span>-</span><span id="year" class="time"></span><span>|</span><span>技术支持：</span><span>微生之最</span></p>
+			<p><span>本站已运行</span><span id="t" class="time"></span><span>天</span><span id="s" class="time"></span><span>小时</span><span id="f" class="time"></span><span>分</span><span id="m" class="time"></span><span>秒</span></p>
+	</footer>
+	<ul id="con">
+		<li id="co-li1"><a href="#top"></a></li>
+		<li id="co-li2"><a href="#bottom"></a></li>
+	</ul>
+	<span id="bottom"></span>
+</body><!-- <span>本站已经运行</span><span id="span_dt_dt"></span> -->
+</html>
